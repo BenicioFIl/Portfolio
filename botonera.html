@@ -20,18 +20,25 @@
             Haz clic en los botones para reproducir diferentes sonidos. Cada botón representa un efecto distinto.
         </p>
     </section>
-    <div class="projects-list" style="justify-content:center;">
-        <div class="project-card" style="max-width:400px;width:100%;">
-            <h3 style="text-align:center;">Panel de Sonidos</h3>
-            <div style="display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin:24px 0;">
-                <button class="calculator" style="width:120px;padding:20px 0;font-size:1.2rem;">Sonido 1</button>
-                <button class="calculator" style="width:120px;padding:20px 0;font-size:1.2rem;">Sonido 2</button>
-                <button class="calculator" style="width:120px;padding:20px 0;font-size:1.2rem;">Sonido 3</button>
-                <button class="calculator" style="width:120px;padding:20px 0;font-size:1.2rem;">Sonido 4</button>
-                <button class="calculator" style="width:120px;padding:20px 0;font-size:1.2rem;">Sonido 5</button>
-                <button class="calculator" style="width:120px;padding:20px 0;font-size:1.2rem;">Sonido 6</button>
+    <div class="projects-list sound-center">
+        <div class="project-card">
+            <h3>Panel de Sonidos</h3>
+            <div class="sound-panel-grid">
+                <button class="calculator" onclick="playSound('sonidos/fatality.mp3')" title="Fatality">🎮</button>
+                <button class="calculator" onclick="playSound('sonidos/mario-bros tuberia.mp3')" title="Tubería Mario">🍄</button>
+                <button class="calculator" onclick="playSound('sonidos/mortal-kombat-round-one.mp3')" title="Round One">🥊</button>
+                <button class="calculator" onclick="playSound('sonidos/pacman-music.mp3')" title="Pacman">🟡</button>
+                <button class="calculator" onclick="playSound('sonidos/sonido5.mp3')" title="Sonido 5">🔊</button>
+                <button class="calculator" onclick="playSound('sonidos/sonido6.mp3')" title="Sonido 6">🔊</button>
             </div>
         </div>
     </div>
+    <script>
+        function playSound(src) {
+            const audio = new Audio(src);
+            audio.volume = 0.25;
+            audio.play();
+        }
+    </script>
 </body>
 </html>
