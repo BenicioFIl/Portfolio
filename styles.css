@@ -1,12 +1,14 @@
+/* ===== ESTILOS BASE ===== */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #fff3e6 0%, #ffe0e0 100%);
     min-height: 100vh;
+    color: #2d2d2d;
 }
 
-/* HEADER Y PERFIL */
+/* ===== HEADER Y PERFIL ===== */
 header {
     background: #b80a0a;
     color: #fff;
@@ -16,6 +18,7 @@ header {
     border-bottom-right-radius: 32px;
     box-shadow: 0 8px 32px rgba(184,10,10,0.12);
 }
+
 .profile-img {
     width: 130px;
     height: 130px;
@@ -26,12 +29,13 @@ header {
     box-shadow: 0 6px 24px rgba(184,10,10,0.18);
     transition: transform 0.3s;
 }
+
 .profile-img:hover {
     transform: scale(1.07) rotate(-3deg);
 }
 
-/* NAVBAR */
-nav.navbar {
+/* ===== NAVBAR ===== */
+.navbar {
     top: 0;
     left: 0;
     right: 0;
@@ -43,19 +47,22 @@ nav.navbar {
     padding: 18px 0 10px 0;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 0 0 24px 0;
 }
-nav.navbar ul {
+
+.navbar ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     gap: 36px;
 }
-nav.navbar li {
+
+.navbar li {
     display: inline;
 }
-nav.navbar a {
+
+.navbar a {
     color: #fff;
     font-weight: 500;
     text-decoration: none;
@@ -64,31 +71,15 @@ nav.navbar a {
     border-radius: 20px;
     transition: background 0.2s, color 0.2s;
 }
-nav.navbar a:hover, nav.navbar a:focus {
+
+.navbar a:hover, 
+.navbar a:focus {
     background: #fff;
     color: #b80a0a;
 }
 
-/* INTRO */
-section.intro {
-    max-width: 600px;
-    margin: 48px auto 32px auto;
-    background: rgba(255,255,255,0.95);
-    padding: 36px 32px;
-    border-radius: 20px;
-    box-shadow: 0 6px 32px rgba(184,10,10,0.10);
-    text-align: center;
-    color: #2d2d2d;
-}
-section.intro h2 {
-    margin-top: 0;
-    font-size: 2.2rem;
-    color: #b80a0a;
-    letter-spacing: 1px;
-}
-
-/* PROYECTOS */
-section.projects {
+/* ===== SECCIONES GENERALES ===== */
+.section-container {
     max-width: 1000px;
     margin: 48px auto;
     background: rgba(255,255,255,0.97);
@@ -97,19 +88,49 @@ section.projects {
     box-shadow: 0 6px 32px rgba(184,10,10,0.10);
     position: relative;
 }
-.projects-title {
+
+.section-title {
     text-align: center;
     color: #b80a0a;
     font-size: 2rem;
     margin-bottom: 32px;
     letter-spacing: 1px;
 }
+
+/* ===== INTRO ===== */
+.intro {
+    max-width: 600px;
+    margin: 48px auto 32px auto;
+    background: rgba(255,255,255,0.95);
+    padding: 36px 32px;
+    border-radius: 20px;
+    box-shadow: 0 6px 32px rgba(184,10,10,0.10);
+    text-align: center;
+}
+
+.intro h2 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: #b80a0a;
+    letter-spacing: 1px;
+}
+
+/* ===== PROYECTOS ===== */
 .projects-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    justify-items: center;
+    align-items: start;
+}
+
+.projects-list.sound-center {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* permite que se acomode en pantallas chicas */
+    flex-wrap: wrap;
 }
+
 .project-card {
     flex: 1 1 280px;
     background: linear-gradient(135deg, #ffe0e0 60%, #fff3e6 100%);
@@ -119,28 +140,38 @@ section.projects {
     transition: transform 0.25s, box-shadow 0.25s;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     min-width: 260px;
     max-width: 320px;
-    position: relative; /* Asegura que el botón se posicione respecto a la tarjeta */
+    position: relative;
     text-align: center;
     margin: 0 auto;
 }
+
+.projects-list:not(.sound-center) .project-card:nth-child(3) {
+    grid-column: 1 / span 2;
+    justify-self: center;
+    max-width: 320px;
+}
+
 .project-card:hover {
     transform: translateY(-10px) scale(1.04);
     box-shadow: 0 12px 32px rgba(184,10,10,0.18);
 }
+
 .project-card h3 {
     margin-top: 0;
     color: #b80a0a;
     font-size: 1.3rem;
     margin-bottom: 10px;
 }
+
 .project-card p {
     flex: 1;
     color: #3a3a3a;
     margin-bottom: 18px;
 }
+
 .project-card a {
     color: #b80a0a;
     font-weight: bold;
@@ -148,10 +179,13 @@ section.projects {
     border-bottom: 2px solid #b80a0a;
     transition: color 0.2s, border-bottom 0.2s;
 }
+
 .project-card a:hover {
     color: #a00808;
     border-bottom: 2px solid #a00808;
 }
+
+/* ===== BOTONES DE INFORMACIÓN ===== */
 .info-btn {
     position: absolute;
     top: 12px;
@@ -173,37 +207,17 @@ section.projects {
     justify-content: center;
     padding: 0;
 }
+
 .info-btn:hover {
     background: #b80a0a;
     color: #fff;
 }
 
-/* CONTACTO */
-section.contact {
-    max-width: 600px;
-    margin: 48px auto 32px auto;
-    background: #fff;
-    padding: 36px 32px;
-    border-radius: 20px;
-    border: 2px solid #ffd6d6;
-    box-shadow: 0 8px 32px rgba(184,10,10,0.10);
-    color: #2d2d2d;
-    transition: box-shadow 0.3s;
-    position: relative;
-}
-section.contact:hover {
-    box-shadow: 0 12px 40px rgba(184,10,10,0.18);
-}
-.contact-title {
-    text-align: center;
-    color: #b80a0a;
-    font-size: 2rem;
-    margin-bottom: 24px;
-    letter-spacing: 1px;
-}
+/* ===== FORMULARIO DE CONTACTO ===== */
 .contact-form .form-group {
     margin-bottom: 18px;
 }
+
 .contact-form label {
     display: block;
     margin-bottom: 7px;
@@ -211,6 +225,7 @@ section.contact:hover {
     color: #b80a0a;
     letter-spacing: 0.5px;
 }
+
 .contact-form input,
 .contact-form textarea {
     width: 100%;
@@ -222,18 +237,22 @@ section.contact:hover {
     transition: border 0.2s;
     font-family: inherit;
 }
+
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border: 1.5px solid #b80a0a;
     background: #fff8f6;
 }
+
 .contact-form textarea {
     min-height: 90px;
     resize: vertical;
     font-size: 1.05rem;
 }
-.contact-form button {
+
+/* ===== BOTONES GENERALES ===== */
+.btn {
     background: linear-gradient(90deg, #b80a0a 70%, #ff7e7e 100%);
     color: #fff;
     padding: 12px 32px;
@@ -245,42 +264,30 @@ section.contact:hover {
     letter-spacing: 1px;
     box-shadow: 0 2px 8px rgba(184,10,10,0.10);
     transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
-.contact-form button:hover {
+
+.btn:hover {
     background: linear-gradient(90deg, #a00808 70%, #ffb3b3 100%);
     transform: translateY(-2px) scale(1.03);
 }
 
-/* BOTÓN VOLVER */
-.back-home-btn {
-    background: linear-gradient(90deg, #b80a0a 70%, #ff7e7e 100%);
-    color: #fff;
+.btn-sm {
     padding: 10px 22px;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
     font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(184,10,10,0.10);
-    transition: background 0.2s, transform 0.2s, color 0.2s;
-    margin-left: 16px;
-    margin-bottom: 8px;
-    display: inline-block;
+    border-radius: 20px;
 }
-.back-home-btn:hover {
-    background: linear-gradient(90deg, #a00808 70%, #ffb3b3 100%);
-    color: #b80a0a;
-    transform: translateY(-2px) scale(1.04);
-}
-.back-home-btn-fixed {
+
+.btn-fixed {
     position: absolute;
     right: 40px;
     bottom: 40px;
     z-index: 10;
 }
 
-/* CALCULADORA */
-.calculator {
+/* ===== CALCULADORA ===== */
+.calculator-container {
     background: #fff;
     max-width: 340px;
     margin: 60px auto 0 auto;
@@ -291,7 +298,8 @@ section.contact:hover {
     flex-direction: column;
     align-items: center;
 }
-#display {
+
+.calculator-display {
     width: 100%;
     height: 48px;
     font-size: 1.6rem;
@@ -308,12 +316,14 @@ section.contact:hover {
     font-weight: bold;
     letter-spacing: 1px;
 }
-.buttons {
+
+.calculator-buttons {
     display: grid;
     grid-template-columns: repeat(4, 60px);
     grid-gap: 14px;
 }
-.calculator button {
+
+.calculator-btn {
     background: linear-gradient(90deg, #b80a0a 70%, #ff7e7e 100%);
     color: #fff;
     border: none;
@@ -325,16 +335,28 @@ section.contact:hover {
     transition: background 0.2s, transform 0.2s;
     box-shadow: 0 2px 8px rgba(184,10,10,0.10);
 }
-.calculator button:hover {
+
+.calculator-btn:hover {
     background: linear-gradient(90deg, #a00808 70%, #ffb3b3 100%);
     color: #b80a0a;
     transform: translateY(-2px) scale(1.04);
 }
-.calculator button:active {
+
+.calculator-btn:active {
     background: #ffd6d6;
     color: #b80a0a;
 }
-.sound-panel-grid .calculator {
+
+/* ===== BOTONERA DE SONIDOS ===== */
+.sound-panel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    justify-items: center;
+    margin: 24px 0;
+}
+
+.sound-btn {
     width: 90px;
     height: 90px;
     border-radius: 50%;
@@ -358,7 +380,8 @@ section.contact:hover {
     text-shadow: 0 2px 8px #000;
     user-select: none;
 }
-.sound-panel-grid .calculator:before {
+
+.sound-btn::before {
     content: "";
     position: absolute;
     top: 12px;
@@ -370,65 +393,103 @@ section.contact:hover {
     filter: blur(1px);
     pointer-events: none;
 }
-.sound-panel-grid .calculator:hover {
+
+.sound-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5),
                 inset 0 -4px 10px rgba(0, 0, 0, 0.4);
 }
-.sound-panel-grid .calculator:active {
+
+.sound-btn:active {
     transform: scale(0.94);
     background: radial-gradient(circle at 30% 30%, #7a0000 60%, #ff3d3d 100%);
     box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2),
                 0 2px 4px rgba(0, 0, 0, 0.4);
 }
-.sound-panel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    justify-items: center;
-    margin: 24px 0;
-}
-.project-card {
+
+/* ===== SIMÓN DICE ===== */
+.simon-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     text-align: center;
 }
-.sound-center {
+
+.simon-board {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 16px;
+    margin: 24px 0;
+    width: 272px;
+    margin-left: auto;
+    margin-right: auto;
 }
-/* RESPONSIVE */
+
+.simon-btn {
+    width: 120px;
+    height: 120px;
+    border: none;
+    border-radius: 16px;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.1s;
+    cursor: pointer;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.simon-btn.active {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow: 0 0 16px 4px #fff7;
+}
+
+.simon-btn.green { background: #4caf50; }
+.simon-btn.red { background: #e53935; }
+.simon-btn.yellow { background: #fbc02d; }
+.simon-btn.blue { background: #1976d2; }
+
+.simon-status {
+    margin: 12px 0;
+    font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
     .projects-list {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
     }
-    .project-card {
-        margin: 0 auto;
+    
+    .projects-list:not(.sound-center) .project-card:nth-child(3) {
+        grid-column: auto;
     }
 }
-@media (max-width: 400px) {
-    .calculator {
+
+@media (max-width: 600px) {
+    .navbar ul {
+        gap: 18px;
+    }
+    
+    .section-container {
+        padding: 24px 16px;
+        margin: 32px 16px;
+    }
+    
+    .calculator-container {
         max-width: 98vw;
         padding: 16px 4px;
     }
-    .buttons {
+    
+    .calculator-buttons {
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 8px;
     }
-}
-
-/* Solo aplica en el index, NO en la botonera */
-.projects-list:not(.sound-center) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
-    gap: 32px;
-    justify-items: center;
-    align-items: start;
-}
-
-.projects-list:not(.sound-center) .project-card:nth-child(3) {
-    grid-column: 1 / span 2;
-    justify-self: center;
-    max-width: 320px;
+    
+    .sound-panel-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
