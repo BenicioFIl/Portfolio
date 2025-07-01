@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simón Dice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .simon-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 24px;
+            background: var(--background, #fff);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .simon-board {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+            width: 272px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .simon-btn {
+            width: 120px;
+            height: 120px;
+            border: none;
+            border-radius: 16px;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.1s;
+            cursor: pointer;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .simon-btn.active {
+            opacity: 1;
+            transform: scale(1.08);
+            box-shadow: 0 0 16px 4px #fff7;
+        }
+        .simon-btn.green { background: #4caf50; }
+        .simon-btn.red { background: #e53935; }
+        .simon-btn.yellow { background: #fbc02d; }
+        .simon-btn.blue { background: #1976d2; }
+        .simon-status {
+            margin: 12px 0;
+            font-weight: bold;
+        }
+        .simon-start-btn {
+            margin: 0 auto 12px auto;
+            display: block;
+            padding: 10px 24px;
+            background: var(--primary, #1976d2);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .navbar {
+            margin-bottom: 24px;
+        }
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            list-style: none;
+            padding: 0;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: var(--primary, #1976d2);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#proyectos">Proyectos</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    <section class="simon-container">
+        <h2>Simón Dice</h2>
+        <button class="simon-start-btn" id="simon-start">Comenzar</button>
+        <div class="simon-status" id="simon-status">Presiona "Comenzar" para jugar</div>
+        <div class="simon-board">
+            <button class="simon-btn green" data-color="green"></button>
+            <button class="simon-btn red" data-color="red"></button>
+            <button class="simon-btn yellow" data-color="yellow"></button>
+            <button class="simon-btn blue" data-color="blue"></button>
+        </div>
+    </section>
+    <script>
+        const colors = ['green', 'red', 'yellow', 'blue'];
+        let sequence = [];
+        let userSequence = [];
+        let level = 0;
+        let canClick = false;
+
+        const status = document.getElementById('simon-status');
+        const startBtn = document.getElementById('simon-start');
+        const buttons = Array.from(document.querySelectorAll('.simon-btn'));
+
+        function nextLevel() {
+            userSequence = [];
+            level++;
+            status.textContent = `Nivel ${level}`;
+            sequence.push(colors[Math.floor(Math.random() * 4)]);
+            playSequence();
+        }
+
+        function playSequence() {
+            canClick = false;
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i >= sequence.length) {
+                    clearInterval(interval);
+                    canClick = true;
+                    return;
+                }
+                const color = sequence[i];
+                const btn = buttons.find(b => b.dataset.color === color);
+                btn.classList.add('active');
+                setTimeout(() => btn.classList.remove('active'), 400);
+                i++;
+            }, 600);
+        }
+
+        function handleUserClick(e) {
+            if (!canClick) return;
+            const color = e.target.dataset.color;
+            userSequence.push(color);
+            e.target.classList.add('active');
+            setTimeout(() => e.target.classList.remove('active'), 200);
+
+            if (color !== sequence[userSequence.length - 1]) {
+                status.textContent = `¡Perdiste! Llegaste al nivel ${level}.`;
+                canClick = false;
+                startBtn.disabled = false;
+                startBtn.textContent = "Reintentar";
+                return;
+            }
+            if (userSequence.length === sequence.length) {
+                setTimeout(nextLevel, 800);
+            }
+        }
+
+        startBtn.addEventListener('click', () => {
+            sequence = [];
+            userSequence = [];
+            level = 0;
+            startBtn.disabled = true;
+            startBtn.textContent = "Jugando...";
+            nextLevel();
+        });
+
+        buttons.forEach(btn => btn.addEventListener('click', handleUserClick));
+    </script>
+</body>
+</html>
